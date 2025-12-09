@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SILITECH AG - Silikon- & Klebstoffsysteme</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap');
 
         * {
             margin: 0;
@@ -14,98 +14,45 @@
         }
 
         body {
-            background: #0a0f1a;
+            background: #050a12;
             min-height: 100vh;
             font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
             overflow: hidden;
             color: white;
         }
 
-        /* Animated gradient background */
+        /* Elegant animated background */
         .bg-gradient {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0a1628 0%, #1a365d 25%, #0d2137 50%, #1a365d 75%, #0a1628 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 20s ease infinite;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(0,80,160,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(0,100,180,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(20,40,80,0.3) 0%, transparent 70%),
+                linear-gradient(180deg, #050a12 0%, #0a1525 50%, #050a12 100%);
             z-index: -3;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Floating particles */
-        .particles {
+        /* Subtle moving light */
+        .ambient-light {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: radial-gradient(circle at 30% 30%, rgba(0,100,200,0.08) 0%, transparent 40%);
+            animation: ambientMove 30s ease-in-out infinite;
             z-index: -2;
-            overflow: hidden;
         }
 
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            animation: float-particle 15s infinite;
-        }
-
-        @keyframes float-particle {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
-        }
-
-        /* Glowing orbs */
-        .glow-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-            animation: pulse-glow 8s ease-in-out infinite;
-        }
-
-        .glow-orb.blue {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0,100,200,0.3) 0%, transparent 70%);
-            top: -200px;
-            left: -200px;
-        }
-
-        .glow-orb.cyan {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0,180,220,0.2) 0%, transparent 70%);
-            bottom: -150px;
-            right: -150px;
-            animation-delay: -4s;
-        }
-
-        .glow-orb.purple {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(100,50,200,0.15) 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation-delay: -2s;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.2); opacity: 1; }
+        @keyframes ambientMove {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(5%, 3%); }
+            50% { transform: translate(3%, 5%); }
+            75% { transform: translate(-3%, 2%); }
         }
 
         /* Slides */
@@ -121,8 +68,8 @@
             align-items: center;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 1s ease-in-out, visibility 1s;
-            padding: 60px;
+            transition: opacity 1.2s ease-in-out, visibility 1.2s;
+            padding: 80px;
         }
 
         .slide.active {
@@ -131,79 +78,61 @@
         }
 
         .slide.active .slide-content {
-            animation: slideUp 0.8s ease-out;
+            animation: fadeInUp 1s ease-out;
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
+        @keyframes fadeInUp {
+            from { transform: translateY(40px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
 
         /* Product images */
         .slide img.product {
-            max-width: 60%;
-            max-height: 45vh;
+            max-width: 55%;
+            max-height: 42vh;
             object-fit: contain;
-            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));
-            border-radius: 12px;
-            transition: transform 0.5s ease;
+            border-radius: 16px;
+            filter: drop-shadow(0 25px 50px rgba(0,0,0,0.4));
         }
 
         .slide img.logo {
-            max-width: 400px;
-            max-height: 200px;
+            max-width: 380px;
+            max-height: 180px;
             object-fit: contain;
-            filter: brightness(0) invert(1) drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+            filter: brightness(0) invert(1) drop-shadow(0 8px 25px rgba(0,0,0,0.3));
         }
 
         /* Typography */
         .slide h1 {
-            font-size: 4.5rem;
+            font-size: 4rem;
             font-weight: 200;
-            margin-top: 40px;
+            margin-top: 35px;
             text-align: center;
-            letter-spacing: 4px;
-            background: linear-gradient(135deg, #ffffff 0%, #a0c4ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: 6px;
+            color: #ffffff;
         }
 
         .slide h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 300;
-            margin-top: 20px;
-            opacity: 0.85;
+            margin-top: 18px;
+            opacity: 0.8;
             text-align: center;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .slide h3 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 400;
-            margin-top: 15px;
-            opacity: 0.6;
+            margin-top: 12px;
+            opacity: 0.5;
             text-align: center;
             letter-spacing: 1px;
         }
 
         /* Hero slide */
         .slide.hero {
-            background: linear-gradient(135deg, rgba(0,82,163,0.9) 0%, rgba(0,51,102,0.95) 100%);
-        }
-
-        .slide.hero h1 {
-            font-size: 6rem;
-            font-weight: 200;
-            letter-spacing: 12px;
-            -webkit-text-fill-color: white;
-        }
-
-        .slide.hero h2 {
-            font-size: 2rem;
-            letter-spacing: 6px;
-            margin-top: 30px;
-            opacity: 0.9;
+            background: linear-gradient(135deg, rgba(0,70,140,0.95) 0%, rgba(0,40,90,0.98) 100%);
         }
 
         .slide.hero::before {
@@ -213,159 +142,249 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            z-index: -1;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.03) 0%, transparent 30%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 30%);
+            z-index: 0;
         }
 
-        /* Partners grid */
+        .slide.hero .slide-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide.hero h1 {
+            font-size: 5.5rem;
+            font-weight: 200;
+            letter-spacing: 15px;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .slide.hero h2 {
+            font-size: 1.8rem;
+            letter-spacing: 8px;
+            margin-top: 25px;
+            opacity: 0.85;
+        }
+
+        /* Category badge - elegant pill style */
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .category-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #00aaff 0%, #0066cc 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0,170,255,0.5);
+        }
+
+        /* Partners grid - elegant layout */
+        .partners-section h1 {
+            margin-bottom: 15px;
+            margin-top: 0;
+        }
+
         .partners-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 50px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 40px 50px;
             margin-top: 50px;
-            align-items: center;
+            padding: 40px 60px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.06);
         }
 
         .partners-grid img {
-            max-width: 180px;
-            max-height: 80px;
-            filter: brightness(0) invert(1) drop-shadow(0 5px 15px rgba(0,0,0,0.2));
-            opacity: 0.85;
-            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 160px;
+            max-height: 70px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.75;
+            transition: all 0.4s ease;
         }
 
-        /* Product showcase grid */
+        /* Product showcase grid - cards style */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 35px;
             margin-top: 40px;
         }
 
-        .product-grid img {
+        .product-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s ease;
+        }
+
+        .product-card img {
             width: 100%;
-            max-height: 200px;
+            height: 180px;
             object-fit: contain;
             border-radius: 12px;
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.4));
+            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.3));
+        }
+
+        .product-card-label {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            opacity: 0.7;
+            text-align: center;
         }
 
         /* Corner logo */
         .corner-logo {
             position: fixed;
-            top: 30px;
-            right: 40px;
-            width: 120px;
-            opacity: 0.6;
+            top: 35px;
+            right: 45px;
+            width: 110px;
+            opacity: 0.5;
             filter: brightness(0) invert(1);
             z-index: 100;
         }
 
-        /* Progress bar */
+        /* Progress bar - sleek design */
         .progress-container {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: rgba(255,255,255,0.1);
+            height: 3px;
+            background: rgba(255,255,255,0.05);
             z-index: 100;
         }
 
         .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, #0066cc, #00aaff, #0066cc);
+            background: linear-gradient(90deg, #0055aa, #00aaff, #0055aa);
             background-size: 200% 100%;
-            animation: progressGradient 2s linear infinite;
+            animation: progressGlow 3s linear infinite;
             width: 0%;
             transition: width 0.1s linear;
+            box-shadow: 0 0 20px rgba(0,170,255,0.4);
         }
 
-        @keyframes progressGradient {
+        @keyframes progressGlow {
             0% { background-position: 0% 50%; }
             100% { background-position: 200% 50%; }
         }
 
-        /* Tagline */
-        .tagline {
+        /* Footer info */
+        .footer-info {
             position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1rem;
-            opacity: 0.5;
+            bottom: 25px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 45px;
+            z-index: 100;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            opacity: 0.4;
             letter-spacing: 4px;
             text-transform: uppercase;
             font-weight: 300;
-            z-index: 100;
         }
 
-        /* Slide counter */
         .slide-counter {
-            position: fixed;
-            bottom: 30px;
-            right: 40px;
-            font-size: 0.9rem;
-            opacity: 0.4;
-            font-weight: 300;
-            z-index: 100;
+            font-size: 0.85rem;
+            opacity: 0.35;
+            font-weight: 400;
+            font-variant-numeric: tabular-nums;
         }
 
-        /* Category badge */
-        .category-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 30px;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Feature list */
+        /* Feature pills on hero */
         .features {
             display: flex;
-            gap: 40px;
-            margin-top: 40px;
+            gap: 25px;
+            margin-top: 50px;
         }
 
-        .feature {
+        .feature-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .feature-pill .dot {
+            width: 6px;
+            height: 6px;
+            background: #00aaff;
+            border-radius: 50%;
+        }
+
+        /* Stats display */
+        .stats-row {
+            display: flex;
+            gap: 80px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
             text-align: center;
-            opacity: 0.8;
         }
 
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 200;
+            color: #00aaff;
+            letter-spacing: 2px;
         }
 
-        .feature-text {
-            font-size: 0.95rem;
-            letter-spacing: 1px;
+        .stat-label {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        /* Brand colors accent */
+        .accent-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #0066cc, #00aaff);
+            border-radius: 2px;
+            margin: 25px auto 0;
         }
     </style>
 </head>
 <body>
     <div class="bg-gradient"></div>
-
-    <div class="particles">
-        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
-        <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
-        <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
-        <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
-        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
-        <div class="particle" style="left: 70%; animation-delay: 2.5s;"></div>
-        <div class="particle" style="left: 80%; animation-delay: 4.5s;"></div>
-        <div class="particle" style="left: 90%; animation-delay: 1.5s;"></div>
-    </div>
-
-    <div class="glow-orb blue"></div>
-    <div class="glow-orb cyan"></div>
-    <div class="glow-orb purple"></div>
+    <div class="ambient-light"></div>
 
     <img src="01_LOGOS_PARTNER/16 zu 9, transparent/SILISIL_logo_tp.png" class="corner-logo" alt="SILITECH">
 
@@ -375,18 +394,9 @@
             <h1>SILITECH AG</h1>
             <h2>Silikon- & Klebstoffsysteme</h2>
             <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">&#9670;</div>
-                    <div class="feature-text">Qualitat</div>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">&#9670;</div>
-                    <div class="feature-text">Innovation</div>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">&#9670;</div>
-                    <div class="feature-text">Kompetenz</div>
-                </div>
+                <div class="feature-pill"><span class="dot"></span>Qualität</div>
+                <div class="feature-pill"><span class="dot"></span>Innovation</div>
+                <div class="feature-pill"><span class="dot"></span>Kompetenz</div>
             </div>
         </div>
     </div>
@@ -398,17 +408,19 @@
             <img src="01_LOGOS_PARTNER/16 zu 9, transparent/SILISIL_logo_tp.png" alt="SILISIL" class="logo">
             <h1>SILISIL</h1>
             <h2>Hochleistungs-Silikone</h2>
+            <div class="accent-line"></div>
             <h3>Made in Switzerland</h3>
         </div>
     </div>
 
-    <!-- Slide 3: RTV Silikon -->
+    <!-- Slide 3: RTV Body -->
     <div class="slide">
         <div class="slide-content">
             <span class="category-badge">RTV-2 Systeme</span>
-            <img src="01_LOGOS_PARTNER/16 zu 9, transparent/SILISIL RTV CT-Body 10.png" alt="RTV Body" class="logo" style="max-width: 500px;">
+            <img src="01_LOGOS_PARTNER/16 zu 9, transparent/SILISIL RTV CT-Body 10.png" alt="RTV Body" class="logo" style="max-width: 480px;">
             <h2>RTV-2 Silikonsysteme</h2>
-            <h3>Zweikomponenten-Silikone fur hohe Anforderungen</h3>
+            <div class="accent-line"></div>
+            <h3>Zweikomponenten-Silikone für höchste Anforderungen</h3>
         </div>
     </div>
 
@@ -416,72 +428,97 @@
     <div class="slide">
         <div class="slide-content">
             <span class="category-badge">RTV-2 Systeme</span>
-            <img src="01_LOGOS_PARTNER/16 zu 9, transparent/SILISIL RTV CT-Flex 25.png" alt="RTV Flex" class="logo" style="max-width: 500px;">
+            <img src="01_LOGOS_PARTNER/16 zu 9, transparent/SILISIL RTV CT-Flex 25.png" alt="RTV Flex" class="logo" style="max-width: 480px;">
             <h2>CT-Flex Serie</h2>
-            <h3>Flexible Silikone fur anspruchsvolle Anwendungen</h3>
+            <div class="accent-line"></div>
+            <h3>Flexible Silikone für anspruchsvolle Anwendungen</h3>
         </div>
     </div>
 
-    <!-- Slide 5: Partner Overview -->
+    <!-- Slide 5: RTV BodyThixo -->
     <div class="slide">
         <div class="slide-content">
-            <h1 style="margin-bottom: 20px; margin-top: 0;">Unsere Partner</h1>
-            <h3 style="margin-bottom: 40px;">Fuhrende Hersteller - Exklusiv in der Schweiz</h3>
+            <span class="category-badge">RTV-2 Systeme</span>
+            <img src="01_LOGOS_PARTNER/16 zu 9, transparent/SILISIL RTV CT-BodyThixo 22.png" alt="RTV BodyThixo" class="logo" style="max-width: 480px;">
+            <h2>CT-BodyThixo Serie</h2>
+            <div class="accent-line"></div>
+            <h3>Thixotrope Silikone - standfest und verarbeitungssicher</h3>
+        </div>
+    </div>
+
+    <!-- Slide 6: Partner Overview 1 -->
+    <div class="slide partners-section">
+        <div class="slide-content">
+            <h1>Unsere Partner</h1>
+            <h3>Führende Hersteller - Exklusiv in der Schweiz</h3>
             <div class="partners-grid">
-                <img src="01_LOGOS_PARTNER/16 zu 9, transparent/Permabond_Logo_tp.png" alt="Permabond">
-                <img src="01_LOGOS_PARTNER/16 zu 9, transparent/Loctite_Logo_tp.png" alt="Loctite">
                 <img src="01_LOGOS_PARTNER/16 zu 9, transparent/Henkel_Logo_tp.png" alt="Henkel">
+                <img src="01_LOGOS_PARTNER/16 zu 9, transparent/Loctite_Logo_tp.png" alt="Loctite">
                 <img src="01_LOGOS_PARTNER/16 zu 9, transparent/Teroson_Logo_tp.png" alt="Teroson">
+                <img src="01_LOGOS_PARTNER/16 zu 9, transparent/Permabond_Logo_tp.png" alt="Permabond">
+                <img src="01_LOGOS_PARTNER/16 zu 9, transparent/Bonderite_logo_tp.png" alt="Bonderite">
+                <img src="01_LOGOS_PARTNER/16 zu 9, transparent/CRC_Logo_tp.png" alt="CRC">
+                <img src="01_LOGOS_PARTNER/16 zu 9, transparent/Acxrystal_logo_tp.png" alt="Acrystal">
+                <img src="01_LOGOS_PARTNER/16 zu 9, transparent/BRB_logo_tp.png" alt="BRB">
+                <img src="01_LOGOS_PARTNER/16 zu 9, transparent/Caldic_logo_tp.png" alt="Caldic">
+                <img src="01_LOGOS_PARTNER/16 zu 9, transparent/CDS_Logo_tp.png" alt="CDS">
             </div>
         </div>
     </div>
 
-    <!-- Slide 6: CAF Dichtmassen -->
-    <div class="slide">
-        <div class="slide-content">
-            <span class="category-badge">Dichtmassen</span>
-            <img src="Produkte/Silitech_Elkem_CAF_33_Black_1.JPG" alt="CAF 33" class="product">
-            <h2>CAF Dichtmassen</h2>
-            <h3>Elkem CAF Serie - Industrielle Abdichtung</h3>
-        </div>
-    </div>
-
-    <!-- Slide 7: CAF Varianten -->
-    <div class="slide">
-        <div class="slide-content">
-            <span class="category-badge">Produktvielfalt</span>
-            <div class="product-grid">
-                <img src="Produkte/Silitech_Elkem_CAF_33_white_1.JPG" alt="CAF White">
-                <img src="Produkte/Silitech_Elkem_CAF_730_MF_310ml_1.JPG" alt="CAF 730">
-                <img src="Produkte/Silitech_Elkem_CAF_4_1.JPG" alt="CAF 4">
-            </div>
-            <h2>CAF Produktfamilie</h2>
-            <h3>Verschiedene Farben und Eigenschaften</h3>
-        </div>
-    </div>
-
-    <!-- Slide 8: Loctite -->
+    <!-- Slide 7: Loctite -->
     <div class="slide">
         <div class="slide-content">
             <span class="category-badge">Partner</span>
             <img src="01_LOGOS_PARTNER/16 zu 9, transparent/Loctite_Logo_tp.png" alt="Loctite" class="logo">
             <h1>Loctite</h1>
             <h2>Strukturklebstoffe & Schraubensicherung</h2>
-            <h3>Weltweit fuhrend in der Klebstofftechnologie</h3>
+            <div class="accent-line"></div>
+            <h3>Weltmarktführer in der Klebstofftechnologie</h3>
         </div>
     </div>
 
-    <!-- Slide 9: Loctite Produkte -->
+    <!-- Slide 8: Loctite Produkte -->
     <div class="slide">
         <div class="slide-content">
             <span class="category-badge">Loctite Sortiment</span>
             <div class="product-grid">
-                <img src="Produkte/Henkel/Silitech-Produkt-Loctite-EA9466-50ml-1.JPG" alt="Loctite EA9466">
-                <img src="Produkte/Henkel/Silitech-Produkt-Loctite-HY4080GY-50ml-1.JPG" alt="Loctite HY4080">
-                <img src="Produkte/Henkel/Silitech-Produkt-Loctite-EA9497-50ml-1.JPG" alt="Loctite EA9497">
+                <div class="product-card">
+                    <img src="Produkte/Henkel/Silitech-Produkt-Loctite-EA9466-50ml-1.JPG" alt="Loctite EA9466">
+                    <div class="product-card-label">EA 9466</div>
+                </div>
+                <div class="product-card">
+                    <img src="Produkte/Henkel/Silitech-Produkt-Loctite-HY4080GY-50ml-1.JPG" alt="Loctite HY4080">
+                    <div class="product-card-label">HY 4080</div>
+                </div>
+                <div class="product-card">
+                    <img src="Produkte/Henkel/Silitech-Produkt-Loctite-EA9497-50ml-1.JPG" alt="Loctite EA9497">
+                    <div class="product-card-label">EA 9497</div>
+                </div>
             </div>
-            <h2>Epoxid-Klebstoffe</h2>
-            <h3>Hochfeste Verbindungen fur Industrie und Technik</h3>
+            <h2 style="margin-top: 35px;">Epoxid-Klebstoffe</h2>
+        </div>
+    </div>
+
+    <!-- Slide 9: Loctite Sprays -->
+    <div class="slide">
+        <div class="slide-content">
+            <span class="category-badge">Aktivatoren & Reiniger</span>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="Produkte/Henkel/Silitech-Produkt-Loctite-SF7063-150ml-1.JPG" alt="SF7063">
+                    <div class="product-card-label">SF 7063</div>
+                </div>
+                <div class="product-card">
+                    <img src="Produkte/Henkel/Silitech-Produkt-Loctite-SF7455-150ml-1.JPG" alt="SF7455">
+                    <div class="product-card-label">SF 7455</div>
+                </div>
+                <div class="product-card">
+                    <img src="Produkte/Henkel/Silitech-Produkt-Loctite-SF7471-150ml-1.JPG" alt="SF7471">
+                    <div class="product-card-label">SF 7471</div>
+                </div>
+            </div>
+            <h2 style="margin-top: 35px;">Vorbehandlung & Aktivierung</h2>
         </div>
     </div>
 
@@ -492,6 +529,7 @@
             <img src="01_LOGOS_PARTNER/16 zu 9, transparent/Permabond_Logo_tp.png" alt="Permabond" class="logo">
             <h1>Permabond</h1>
             <h2>Anaerobe & Strukturklebstoffe</h2>
+            <div class="accent-line"></div>
             <h3>Engineering Adhesives seit 1956</h3>
         </div>
     </div>
@@ -501,55 +539,132 @@
         <div class="slide-content">
             <span class="category-badge">Permabond Sortiment</span>
             <div class="product-grid">
-                <img src="Produkte/Permabond/A/Silitech-Produkt-Permabond-A1042-1.JPG" alt="Permabond A1042">
-                <img src="Produkte/Permabond/A/Silitech-Produkt-Permabond-A130-1.JPG" alt="Permabond A130">
-                <img src="Produkte/Permabond/A/Silitech-Produkt-Permabond-A1046-1.JPG" alt="Permabond A1046">
+                <div class="product-card">
+                    <img src="Produkte/Permabond/A/Silitech-Produkt-Permabond-A1042-1.JPG" alt="Permabond A1042">
+                    <div class="product-card-label">A1042</div>
+                </div>
+                <div class="product-card">
+                    <img src="Produkte/Permabond/A/Silitech-Produkt-Permabond-A130-1.JPG" alt="Permabond A130">
+                    <div class="product-card-label">A130</div>
+                </div>
+                <div class="product-card">
+                    <img src="Produkte/Permabond/A/Silitech-Produkt-Permabond-A1046-1.JPG" alt="Permabond A1046">
+                    <div class="product-card-label">A1046</div>
+                </div>
             </div>
-            <h2>Cyanacrylat-Klebstoffe</h2>
-            <h3>Sekundenklebstoffe fur industrielle Anwendungen</h3>
+            <h2 style="margin-top: 35px;">Cyanacrylat-Klebstoffe</h2>
         </div>
     </div>
 
-    <!-- Slide 12: Bluesil -->
+    <!-- Slide 12: Henkel -->
+    <div class="slide">
+        <div class="slide-content">
+            <span class="category-badge">Partner</span>
+            <img src="01_LOGOS_PARTNER/16 zu 9, transparent/Henkel_Logo_tp.png" alt="Henkel" class="logo">
+            <h1>Henkel</h1>
+            <h2>Adhesive Technologies</h2>
+            <div class="accent-line"></div>
+            <h3>Globaler Marktführer für Klebstoffe</h3>
+        </div>
+    </div>
+
+    <!-- Slide 13: Teroson -->
+    <div class="slide">
+        <div class="slide-content">
+            <span class="category-badge">Partner</span>
+            <img src="01_LOGOS_PARTNER/16 zu 9, transparent/Teroson_Logo_tp.png" alt="Teroson" class="logo">
+            <h1>Teroson</h1>
+            <h2>Dicht- & Klebstoffe</h2>
+            <div class="accent-line"></div>
+            <h3>Für Automobilindustrie und Reparatur</h3>
+        </div>
+    </div>
+
+    <!-- Slide 14: CAF Dichtmassen -->
+    <div class="slide">
+        <div class="slide-content">
+            <span class="category-badge">Dichtmassen</span>
+            <img src="Produkte/Silitech_Elkem_CAF_33_Black_1.JPG" alt="CAF 33" class="product">
+            <h2>CAF Dichtmassen</h2>
+            <div class="accent-line"></div>
+            <h3>Elkem CAF Serie - Industrielle Abdichtung</h3>
+        </div>
+    </div>
+
+    <!-- Slide 15: CAF Varianten -->
+    <div class="slide">
+        <div class="slide-content">
+            <span class="category-badge">Produktvielfalt</span>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="Produkte/Silitech_Elkem_CAF_33_white_1.JPG" alt="CAF White">
+                    <div class="product-card-label">CAF 33 Weiss</div>
+                </div>
+                <div class="product-card">
+                    <img src="Produkte/Silitech_Elkem_CAF_730_MF_310ml_1.JPG" alt="CAF 730">
+                    <div class="product-card-label">CAF 730 MF</div>
+                </div>
+                <div class="product-card">
+                    <img src="Produkte/Silitech_Elkem_CAF_4_1.JPG" alt="CAF 4">
+                    <div class="product-card-label">CAF 4</div>
+                </div>
+            </div>
+            <h2 style="margin-top: 35px;">CAF Produktfamilie</h2>
+        </div>
+    </div>
+
+    <!-- Slide 16: Bluesil -->
     <div class="slide">
         <div class="slide-content">
             <span class="category-badge">Silikonpasten</span>
             <img src="Produkte/230818_Bluesil_Paste_4.JPG" alt="Bluesil Paste" class="product">
             <h2>Bluesil Silikonpaste</h2>
+            <div class="accent-line"></div>
             <h3>Hochwertige Schmiermittel und Trennmittel</h3>
         </div>
     </div>
 
-    <!-- Slide 13: Produktubersicht -->
+    <!-- Slide 17: Produktübersicht -->
     <div class="slide">
         <div class="slide-content">
             <span class="category-badge">Sortiment</span>
-            <img src="Produkte/230818_Silitech-Produkte3-667.JPG" alt="Produktubersicht" class="product" style="max-height: 55vh;">
+            <img src="Produkte/230818_Silitech-Produkte3-667.JPG" alt="Produktübersicht" class="product" style="max-height: 50vh;">
             <h2>Umfassendes Sortiment</h2>
-            <h3>Uber 1000 Produkte ab Lager Schweiz</h3>
+            <div class="accent-line"></div>
+            <h3>Über 1000 Produkte ab Lager Schweiz</h3>
         </div>
     </div>
 
-    <!-- Slide 14: Sprays -->
+    <!-- Slide 18: Stats -->
     <div class="slide">
         <div class="slide-content">
-            <span class="category-badge">Aktivatoren & Reiniger</span>
-            <div class="product-grid">
-                <img src="Produkte/Henkel/Silitech-Produkt-Loctite-SF7063-150ml-1.JPG" alt="SF7063">
-                <img src="Produkte/Henkel/Silitech-Produkt-Loctite-SF7455-150ml-1.JPG" alt="SF7455">
-                <img src="Produkte/Henkel/Silitech-Produkt-Loctite-SF7471-150ml-1.JPG" alt="SF7471">
+            <h1>SILITECH AG</h1>
+            <h2>Zahlen & Fakten</h2>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Produkte</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Partner</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Jahre Erfahrung</div>
+                </div>
             </div>
-            <h2>Vorbehandlung & Aktivierung</h2>
-            <h3>Reiniger, Primer und Aktivatoren</h3>
         </div>
     </div>
 
-    <!-- Slide 15: Contact -->
+    <!-- Slide 19: Contact -->
     <div class="slide hero">
         <div class="slide-content">
             <h1>SILITECH AG</h1>
-            <h2 style="margin-top: 40px;">Ihr Partner in der Schweiz</h2>
-            <h3 style="margin-top: 30px; opacity: 0.7; font-size: 1.4rem;">www.silitech.ch</h3>
+            <h2>Ihr Partner in der Schweiz</h2>
+            <div class="features" style="margin-top: 40px;">
+                <div class="feature-pill"><span class="dot"></span>www.silitech.ch</div>
+            </div>
         </div>
     </div>
 
@@ -557,8 +672,10 @@
         <div class="progress-bar" id="progress"></div>
     </div>
 
-    <div class="tagline">Ihr Partner in der Schweiz</div>
-    <div class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">15</span></div>
+    <div class="footer-info">
+        <div class="tagline">Ihr Partner in der Schweiz</div>
+        <div class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">19</span></div>
+    </div>
 
     <script>
         const slides = document.querySelectorAll('.slide');
@@ -567,7 +684,7 @@
         const totalSlidesEl = document.getElementById('totalSlides');
 
         let current = 0;
-        const duration = 7000; // 7 Sekunden pro Slide
+        const duration = 8000; // 8 Sekunden pro Slide - ideal für Büro
         let startTime;
         let animationId;
 
@@ -590,22 +707,20 @@
             slides[current].classList.add('active');
             currentSlideEl.textContent = current + 1;
 
-            // Reset progress
             startTime = null;
             cancelAnimationFrame(animationId);
             progressBar.style.width = '0%';
             animationId = requestAnimationFrame(updateProgress);
         }
 
-        // Start progress animation
+        // Start
         animationId = requestAnimationFrame(updateProgress);
-
-        // Auto advance slides
         setInterval(nextSlide, duration);
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight' || e.key === ' ') {
+                clearInterval();
                 nextSlide();
             } else if (e.key === 'ArrowLeft') {
                 slides[current].classList.remove('active');
