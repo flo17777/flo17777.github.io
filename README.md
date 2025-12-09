@@ -1,4 +1,3 @@
-
 [tv_display.html](https://github.com/user-attachments/files/24055181/tv_display.html)
 <!DOCTYPE html>
 <html lang="de">
